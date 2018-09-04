@@ -1,0 +1,221 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Javascript</title>
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+
+    <script>
+
+        // Typescript: door MS gemaakt en voegt types toe aan JS
+        // superset
+
+        // TS is verplicht in Angular
+
+
+
+        a = 10;
+        console.log(a);
+
+        var lijst = JSON.parse(localStorage.persoonData);
+        console.log(lijst[0].Firstname);
+
+
+        // Types en variabelen
+
+        //console.log = function (str) {
+        //    alert(str);
+        //};
+
+        function init() {
+            document.getElementById("btn").addEventListener("click", test);
+            document.getElementById("btn").click = test;
+
+            // jQuery heeft een on functie voor events:
+            //$("#btn").on("click", function () {
+
+            //});        
+
+            //// En voor sommige events directe definitie:
+            //$("#btn").click(function () {
+
+            //});        
+
+            // Met html objecten:
+            var alinea = document.createElement("p");
+            alinea.textContent = "Dit is een alinea";
+            document.getElementById("output").appendChild(alinea);
+
+            // HTML in een string:
+            document.getElementById("output").innerHTML += "<p>Dit is nog een alinea</p>";
+
+
+            (a, b) => a + b;
+
+            // Promise
+
+        }
+
+
+
+
+        //console.log("Hoi");
+        //window.alert("Hoi");
+
+        // Weakly types
+
+        function test() {
+            // Globale variabele
+            // Globale scope: window
+            x = 10;
+
+            console.log(window.x);
+
+            // Lokale variabele
+            var naam = "Xander";
+
+            console.log(naam);
+
+            // let is var maar dan lokaal aan de for-lus
+            // dus let in JS is gelijk aan var in C#
+            for (let i = 0; i < 10; i++) {
+                console.log(i);
+            }
+
+            for (let i = 0; i < 10; i++) {
+                console.log(i);
+            }
+
+            // een array is [...] en van variabele lengte
+            var lijst = [1, naam, window];
+            lijst.push(2);
+        }
+
+        //test();
+
+        document.addEventListener("DOMContentLoaded", init);
+
+
+        function Optellen() {
+
+            var som = 0;
+
+            for (var i = 0; i < arguments.length; i++) {
+                som += parseFloat(arguments[i]);
+                //som += Number(arguments[i]);
+            }
+
+            // met een array
+            return som;
+        }
+
+        function Delen(a, b) {
+            return a / b;
+        }
+
+
+        var Calculator = {
+            Vermenigvuldigen: function (a, b) {
+                return a * b;
+            },
+            Aftrekken: function (a, b) {
+                return a - b;
+            }
+        };
+
+
+        // class zoals in C#
+        // Deze functie is de constructor
+        function Persoon(vn, an) {
+            // alles met this.xxx  is public
+
+            this.Voornaam = vn ? vn : "";
+            this.Achternaam = an ? an : "";
+
+            // public method:
+            this.Fullname = function () {
+                return this.Voornaam + " " + this.Achternaam;
+            };
+        }
+
+        var p1 = new Persoon("Xander", "Wemmers");
+        //p1.Voornaam = "Xander";
+        //p1.Achternaam = "Wemmers";
+
+        console.log(p1.Fullname());
+
+
+        function Medewerker(vn, an, s) {
+            // roep de constructor van de base class aan:
+            //Persoon(vn, an); // op deze manier wijst this in die functie naar window
+
+            Persoon.call(this, vn, an); // met call(this.....) geef je de this pointer mee
+            Persoon.apply(this, arguments); // apply is hetzelfde als call maar dan met een array
+
+            this.Salaris = s;
+        }
+
+        // Inheritance in JS gaat via het prototype
+
+        Medewerker.prototype = new Persoon();
+
+        var mdw = new Medewerker("Xander", "Wemmers", 10000);
+
+
+        // Vgl C# en anonieme objecten
+        var obj = { Firstname: "Xander", Lastname: "Wemmers" };
+
+        // serializeren:
+        alert(JSON.stringify(obj));
+
+        var list = [obj, obj, obj];
+
+        localStorage.persoonData = JSON.stringify(list);
+
+
+        var elt1 = document.getElementById("btn");
+        var elt2 = $("#btn"); // dit is een array
+
+        // elt2[0] geeft mij het pure HTML element terug
+        // $(elt1) geeft het element in jQuery context terug
+
+
+
+        // Hier komt Infinity uit:
+        console.log(Delen(10, 0));       
+
+        console.log(Optellen("2")); // 2
+        console.log(Optellen("2.2", "3.3")); // 2
+        console.log(Optellen(2, 3, 4)); // 9
+
+        //console.log(2 == "2"); // true
+        //console.log(2 === "2"); // false
+
+
+
+
+        // Versies van JS met name IE
+
+
+
+
+    </script>
+
+
+</head>
+<body onload="init();">
+    <div> 
+
+        <input id="btn" type="button" value="Klik" onclick="test();" />
+
+        <div id="output"></div>
+
+    </div>
+</body>
+</html>

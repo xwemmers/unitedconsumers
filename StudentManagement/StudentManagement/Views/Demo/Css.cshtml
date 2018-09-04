@@ -1,0 +1,141 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Css</title>
+
+    <style>
+
+        /*#alinea1 {
+            color: blue;
+        }
+
+        .rood
+        {
+            color: red;
+        }
+
+        p 
+        {
+            color: green;
+        }*/
+
+        /*body > table > tbody > tr > td:nth-child(2n+1) {
+            color: red;
+        }*/
+
+        body :nth-child(1)
+        {
+            color: purple;
+        }
+
+        #marketing {
+            width: calc(50vw - 200px);
+            /* 100vh is de hoogte van de viewport in pixels */
+            height: calc(100vh - 50px);
+
+            border: 1px solid blue;
+            background-color: aquamarine;
+            transition: all 3s;
+        }
+
+        input:invalid
+        {
+            background-color: red;
+        }
+
+
+        #marketing:hover
+        {
+            /*background-color: black;
+            color: white;
+            transform: scale(2) rotate(360deg) translate(200px, 100px);*/
+            /*transition: all 1s;
+            height: 100px;*/
+
+            animation: 10s mijnAnimatie;
+        }
+
+        @@keyframes mijnAnimatie
+        {
+            0%
+            {
+                background-color: red;
+                transform: rotate(180deg);
+            }
+
+            30% {
+                background-color: orange;
+                transform: rotate(30deg);
+            }
+
+            50% {
+                background-color: green;
+                transform: rotate(270deg);
+            }
+
+            100% {
+                background-color: blue;
+                transform: rotate(0deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Een aantal CSS voorbeelden</h1>
+
+    <div id="marketing">
+        Dit is voor Marketing!
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Stad</th>
+                <th>Aantal</th>
+                <th>Provincie</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Eindhoven</td>
+                <td>240000</td>
+                <td>Brabant</td>
+            </tr>
+            <tr>
+                <td>Utrecht</td>
+                <td>350000</td>
+                <td>Utrecht</td>
+            </tr>
+            <tr>
+                <td>Weert</td>
+                <td>56000</td>
+                <td>Limburg</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p id="alinea1">
+        Eerste
+    </p>
+
+    <h2>Bla bla</h2>
+
+    <p class="rood">
+        Tweede
+    </p>
+
+    <p class="rood">
+        Derde
+    </p>
+
+</body>
+</html>

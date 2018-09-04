@@ -1,0 +1,38 @@
+﻿@model StudentManagement.Models.Student
+
+@using (Html.BeginForm())
+{
+
+    <h3>Partial view StudentForm</h3>
+
+    @Html.AntiForgeryToken()
+
+    if (Model != null)
+    {
+        @Html.HiddenFor(m => m.StudentID)
+    }
+
+    <text>Voornaam:</text>
+    <br />
+    @Html.EditorFor(m => m.Firstname)
+    @Html.ValidationMessageFor(m => m.Firstname)
+
+    <br />
+    <br />
+
+    <text>Achternaam:</text>
+    <br />
+    @Html.EditorFor(m => m.Lastname)
+    @Html.ValidationMessageFor(m => m.Lastname)
+
+    <br />
+    <br />
+
+    <text>Leeftijd:</text>
+
+    <input type="text" required="required" />
+
+    <input type="submit" value="Opslaan" />
+}
+
+Deze partial view is gegenereerd om @DateTime.Now.ToLongTimeString()

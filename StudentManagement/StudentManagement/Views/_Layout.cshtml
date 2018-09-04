@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+
+        input:invalid
+        {
+            background-color: pink;
+        }
+
+        body
+        {
+            text-align:center;
+        }
+         
+
+    </style>
+
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+
+    @RenderSection("pagescripts", false)
+
+</head>
+<body>
+
+    <h1>Student Management</h1>
+
+    @Html.ActionLink("Home", "Index", "Home") |
+    @Html.ActionLink("Create", "CreateStudent", "Home") |
+    @Html.ActionLink("All students", "AllStudents", "Home") |
+    @Html.ActionLink("Contact", "Contact", "Home") |
+    @Html.ActionLink("Exams", "Index", "Exams") |
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <text>U bent ingelogd als @User.Identity.Name</text>
+
+        @Html.ActionLink("Uitloggen", "Logout", "Home")
+    }
+    else
+    {
+        @Html.ActionLink("Login", "Login", "Home")
+    }
+    
+    |
+
+    Gebruiker @Appvars.UserNumber van @Appvars.UserCount
+
+
+
+    <hr />
+
+    @RenderBody()
+
+    <br /><br />
+
+    <hr />
+
+    Deze pagina is gegenereerd om @DateTime.Now.ToLongTimeString()
+
+</body>
+</html>

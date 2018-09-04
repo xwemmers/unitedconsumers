@@ -1,0 +1,28 @@
+﻿@model List<StudentManagement.Models.Student>
+
+@{
+    ViewBag.Title = "AllStudentsAjax";
+}
+
+@section pagescripts
+{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+
+<h2>AllStudentsAjax</h2>
+
+@foreach (var s in Model)
+{
+    <div>
+        @Ajax.ActionLink(s.Firstname, "_StudentDetails",
+        new { id = s.StudentID },
+        new AjaxOptions { UpdateTargetId = "details", InsertionMode = InsertionMode.Replace })
+    </div>
+}
+
+<br />
+
+<hr />
+
+<div id="details"></div>
+

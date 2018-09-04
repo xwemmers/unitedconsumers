@@ -1,0 +1,20 @@
+﻿@model List<StudentManagement.Models.Student>
+
+@{
+    ViewBag.Title = "AllStudents";
+}
+
+<h2>Er zijn @Model.Count studenten</h2>
+
+<table>
+    @foreach(var s in Model)
+    {
+        <tr>
+            <td>@s.StudentID</td>
+            <td>@s.Firstname</td>
+            <td>@s.Lastname</td>
+            <td>@Html.ActionLink("edit", "EditStudent", new { id = s.StudentID } )</td>
+        </tr>
+    }
+</table>
+

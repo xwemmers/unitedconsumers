@@ -1,0 +1,43 @@
+﻿@model User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+
+    @Html.LabelFor(m => m.Name)
+
+    <br />
+
+    @Html.EditorFor(m => m.Name)
+
+    <br /><br />
+
+    @Html.LabelFor(m => m.Password)
+
+    <br />
+
+    @Html.EditorFor(m => m.Password)
+
+    <br /><br />
+
+    @Html.CheckBox("persistent") <text>blijf ingelogd?</text>
+
+    <br />
+    <br />
+
+    <input type="submit" value="Login" />
+
+    <br /><br />
+
+    <p style="color:red;">
+        @ViewBag.loginmessage
+    </p>
+
+}
+
+

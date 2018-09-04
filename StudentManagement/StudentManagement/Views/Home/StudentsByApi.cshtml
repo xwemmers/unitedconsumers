@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "StudentsByApi";
+}
+
+@section pagescripts
+{
+
+    <script src="http://unpkg.com/vue"></script>
+
+    <script>
+        var vm;
+
+        $(document).ready(function () {
+            vm = new Vue({
+                el: "#output",
+                data: {
+                    students: [],
+                    zoekterm: "",
+                    newStudent: {
+                        Firstname: "", Lastname: ""
+                    }
+                },
+                methods: {
+                    deleteStudent: function (id) {
+                        $.ajax({
+                            method: "DELETE",
+                            url: "/api/StudentApi/" + id,
+                            success: getStudents
+                        });
+                    }
+                }
+            });
+
+            $.getJSON("/api/StudentApi", function (result) {
+                vm.students = result;
+            });
+        });
+
+        function zoekStudenten() {
+            $.getJSON("/api/StudentApi?search=" + vm.zoekterm, function (result) {
+                vm.students = result;
+            });
+        }
+
+        function showStudents(list) {
+            console.log("Er zijn " + list.length + " studenten");
+
+            var html = "<ul>";
+
+            for (var i = 0; i < list.length; i++) {
+                console.log(list[i].Firstname);
+                html += "<li>" + list[i].Firstname + "</li>";
+            }
+
+            html += "</ul>";
+
+            document.getElementById("output").innerHTML = html;
+        }
+
+        function addStudent() {
+            $.post("/api/StudentApi", vm.newStudent, getStudents);
+            // Maak de inputs leeg via de vm data
+            vm.newStudent.Firstname = "";
+            vm.newStudent.Lastname = "";
+        }
+
+        function getStudents() {
+            $.getJSON("/api/StudentApi", function (result) {
+                vm.students = result;
+            });
+        }
+    </script>
+}
+
+<h2>StudentsByApi</h2>
+
+<div id="output">
+
+    Voornaam: <input type="text" v-model="newStudent.Firstname" />
+    <br />
+    Achternaam: <input type="text" v-model="newStudent.Lastname"  />
+    <br />
+    <input type="button" value="Add student" onclick="addStudent();" />
+
+    <hr />
+
+    Zoeken:
+    <input type="text" v-model="zoekterm" />
+
+    <input type="button" value="Zoeken" onclick="zoekStudenten()" />
+    <br /><br />
+
+    <h2>Er zijn {{ students.length }} studenten</h2>
+
+    <ul>
+        <li v-for="s in students">{{ s.Firstname }}</li>
+    </ul>
+
+    <select>
+        <option v-for="s in students">{{s.Firstname}}</option>
+    </select>
+
+    <table>
+        <tr v-for="s in students">
+            <td>{{s.StudentID}}</td>
+            <td>{{s.Firstname}}</td>
+            <td>{{s.Lastname}}</td>
+            <td>
+                <input type="button" 
+                       value="delete" 
+                       v-on:click="deleteStudent(s.StudentID)" />
+            </td>
+        </tr>
+    </table>
+</div>
+

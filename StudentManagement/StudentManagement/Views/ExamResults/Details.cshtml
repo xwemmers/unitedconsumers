@@ -1,0 +1,50 @@
+﻿@model StudentManagement.Models.ExamResult
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ExamResult</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Exam.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exam.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExamDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ExamResultID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

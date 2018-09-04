@@ -1,0 +1,32 @@
+﻿@model StudentManagement.Models.Student
+
+@{
+    ViewBag.Title = "PartialExamples";
+}
+
+<h2>Partial View</h2>
+
+<p>
+    @Html.Partial("_Copyright")
+</p>
+
+<p>
+    @Html.Partial("_Copyright")
+</p>
+
+<p>
+    @Html.Partial("_Student", Model)
+</p>
+
+<p>
+    @Html.Action("_Student", new { id = 1 })
+</p>
+
+<p>
+    @Html.Action("_Student", new { id = 2 })
+</p>
+
+<p>
+    @Html.Action("_ExamResult", new { id = 1 })
+</p>
+
